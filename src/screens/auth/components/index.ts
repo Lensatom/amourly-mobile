@@ -1,0 +1,6 @@
+export { default as Hobbies } from "./Hobbies"
+export { default as Preferences } from "./Preferences"
+export { default as Location } from "./Location"
+export { default as Intentions } from "./Intentions"
+export { default as UploadPhotos } from "./UploadPhotos"
+export { default as Birthday } from "./Birthday"

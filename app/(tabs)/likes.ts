@@ -1,0 +1,1 @@
+export { Likes as default } from "@/screens/likes"

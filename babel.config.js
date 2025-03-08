@@ -13,6 +13,12 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
 
-    plugins,
+    plugins: [
+      ["module-resolver", {
+        "alias": {
+          "@": "./src"
+        },
+      }]
+    ],
   };
 };

@@ -1,0 +1,1 @@
+export { VerifyAccount as default } from "@/screens/auth"
