@@ -1,11 +1,10 @@
 import { Icon } from '@/components/base'
-import { Container } from '@/components/inc'
+import { Container, PersonBox } from '@/components/inc'
 import { PADDING_X, SCREEN_WIDTH } from '@/constants'
 import React from 'react'
 import { FlatList, Pressable } from 'react-native'
 import { Text, View, XStack } from 'tamagui'
 import { FilterType } from './types'
-import { PersonBox } from './components'
 import { router } from 'expo-router'
 
 export const persons = [
