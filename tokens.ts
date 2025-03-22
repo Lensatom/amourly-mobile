@@ -6,8 +6,13 @@ export const tokens = {
     ...TMTokens.color,
     // primary
     primary: '#E50C00',
+    "primary.0.5": "#FFFCFB",
+    "primary.1": "#FFF8F6",
     "primary.2": "#FFEAE6",
     "primary.5": "#FEA394",
+
+    // teal
+    "teal.3": "#067971",
 
     // danger
     danger: '#DF2126',
@@ -24,6 +29,8 @@ export const tokens = {
     "grey.3": "#EFF0F3",
     "grey.4": "#EEF1F5",
     "grey.5": "#CDCED7",
+    "grey.6": "#8B8D98",
+    "grey.7": "#80828D",
     "grey.8": "#62636C",
     "grey.9": "#1E1F24",
 

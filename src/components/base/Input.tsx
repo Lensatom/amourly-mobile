@@ -73,7 +73,7 @@ const Input = forwardRef<any, Props>(({label, phone, hash:h, onChangeText, ...pr
   }
 
   return (
-    <YStack onTouchStart={(e) => e.stopPropagation()} w="$full" gap="$2" position="relative">
+    <YStack onTouchStart={(e) => e.stopPropagation()} flex={1} gap="$2" position="relative">
       {label && <Text>{label}</Text>}
 
       {phone && (

@@ -1,10 +1,10 @@
-import { Container, PersonBox } from '@/components/inc'
+import { Carousel, Container, PersonBox } from '@/components/inc'
 import { PADDING_X } from '@/constants'
 import { router } from 'expo-router'
 import React from 'react'
 import { FlatList, Pressable } from 'react-native'
-import { Text, View, XStack } from 'tamagui'
-import { Messeger } from './components'
+import { Text, View, XStack, YStack } from 'tamagui'
+import { Person } from './components'
 
 export const persons = [
   {
@@ -92,16 +92,18 @@ export const persons = [
 function Chat() {
   return (
     <>
-    <XStack px={PADDING_X} bg="$bg.1" pb="$3">
-      <Text fos="$8" fow="600">Chats</Text>
-    </XStack>
-    <Container>
-      <></>
+    <YStack px={PADDING_X} bg="$bg.1" gap="$2" pb="$3">
+      <XStack>
+        <Text fos="$8" fow="600">Chats</Text>
+      </XStack>
+      <Carousel />
+    </YStack>
+    <Container withBoost>
       <FlatList
         data={persons}
         renderItem={({item}) => (
-          <Pressable style={{flex: 1}} onPress={() => router.push({pathname: '/chats', params: {id: item.id}})}>
-            <Messeger {...item} />
+          <Pressable style={{flex: 1}} onPress={() => router.push({pathname: '/chat/chat-messenger', params: {id: item.id}})}>
+            <Person {...item} />
           </Pressable>
         )}
         showsVerticalScrollIndicator={false}

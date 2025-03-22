@@ -52,16 +52,12 @@ const BaseButton = styled(TMButton, {
         }
       },
       disabled: {
-        bg: "$grey.4",
+        bg: "$primary",
         borderColor: "$colorTransparent",
         borderWidth: 0,
         color: "$grey.3",
         width: "auto",
-        pressStyle: {
-          bg: "$grey.4",
-          borderColor: "$colorTransparent",
-          opacity: 0.8
-        }
+        opacity: 0.3,
       },
       light: {
         bg: "$bg.1",

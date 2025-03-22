@@ -1,4 +1,4 @@
-import { Container, PersonBox } from '@/components/inc'
+import { Carousel, Container, PersonBox } from '@/components/inc'
 import { PADDING_X, SCREEN_WIDTH } from '@/constants'
 import { router } from 'expo-router'
 import React, { useState } from 'react'
@@ -14,18 +14,17 @@ function Likes() {
 
   return (
     <>
-    <YStack bg="$bg.1" pb="$4" px={PADDING_X}>
+    <YStack bg="$bg.1" px={PADDING_X} gap="$2">
       <XStack>
         <Text fos="$8" fow="600">Likes</Text>
       </XStack>
+      <Carousel />
       <XStack borderBottomWidth={0.5}>
-        <Text onPress={() => setActiveTab("likes")} flex={1} ta="center" py="$3" fow="800" color={activeTab === "likes" ? "$primary" : "$black"} borderBottomColor="$primary" borderBottomWidth={activeTab === "likes" ? 1 : 0}>Likes ({likes.length})</Text>
-        <Text onPress={() => setActiveTab("visitors")} flex={1} ta="center" py="$3" fow="800" color={activeTab === "visitors" ? "$primary" : "$black"} borderBottomColor="$primary" borderBottomWidth={activeTab === "visitors" ? 1 : 0}>Visitors ({visitors.length})</Text>
+        <Text onPress={() => setActiveTab("likes")} flex={1} ta="center" py="$2.5" fow="800" color={activeTab === "likes" ? "$primary" : "$black"} borderBottomColor="$primary" borderBottomWidth={activeTab === "likes" ? 1 : 0}>Likes ({likes.length})</Text>
+        <Text onPress={() => setActiveTab("visitors")} flex={1} ta="center" py="$2.5" fow="800" color={activeTab === "visitors" ? "$primary" : "$black"} borderBottomColor="$primary" borderBottomWidth={activeTab === "visitors" ? 1 : 0}>Visitors ({visitors.length})</Text>
       </XStack>
     </YStack>
-    <Container>
-      <View ml={-PADDING_X} pl={PADDING_X} w={SCREEN_WIDTH}>
-      </View>
+    <Container withBoost pt="$4">
       <FlatList
         data={activeTab === "likes" ? likes : visitors}
         renderItem={({item}) => (

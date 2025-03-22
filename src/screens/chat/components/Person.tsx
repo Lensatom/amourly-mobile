@@ -2,7 +2,7 @@ import { Avatar } from '@/components/base'
 import React from 'react'
 import { Text, XStack, YStack } from 'tamagui'
 
-function Messeger(props:any) {
+function Person(props:any) {
   return (
     <XStack gap="$2" ai="center">
       <Avatar url={props.imageURL} size={60} />
@@ -20,4 +20,4 @@ function Messeger(props:any) {
   )
 }
 
-export default Messeger
+export default Person

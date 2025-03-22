@@ -1,1 +1,2 @@
-export { default as Messeger } from "./Messeger"
+export { default as Person } from "./Person"
+export { default as Message } from "./Message"

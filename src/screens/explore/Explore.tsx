@@ -1,11 +1,11 @@
 import { Icon } from '@/components/base'
-import { Container, PersonBox } from '@/components/inc'
+import { Carousel, Container, PersonBox } from '@/components/inc'
 import { PADDING_X, SCREEN_WIDTH } from '@/constants'
+import { router } from 'expo-router'
 import React from 'react'
 import { FlatList, Pressable } from 'react-native'
 import { Text, View, XStack } from 'tamagui'
 import { FilterType } from './types'
-import { router } from 'expo-router'
 
 export const persons = [
   {
@@ -119,37 +119,38 @@ function Explore() {
   ]
 
   return (
-    <Container>
-      <></>
-      <View ml={-PADDING_X} pl={PADDING_X} w={SCREEN_WIDTH}>
+    <>
+      <Container withBoost gap="$2">
+        <View ml={-PADDING_X} pl={PADDING_X} w={SCREEN_WIDTH}>
+          <FlatList
+            data={filters}
+            renderItem={({item}) => (
+              <XStack py="$2" px="$4" bg="$bg.1" br={99} mb="$2" borderColor="$grey.2" borderWidth={1} ai="center" gap="$2">
+                <Text textTransform='capitalize' color="$grey.2">{item.name}</Text>
+                {item.icon && <Icon name={item.icon} size={16} padding={0} />}
+              </XStack>
+            )}
+            horizontal={true}
+            ItemSeparatorComponent={() => <View w={8} />}
+            showsHorizontalScrollIndicator={false}
+            ListFooterComponent={() => <View w="$4" />}
+          />
+        </View>
         <FlatList
-          data={filters}
+          data={persons}
           renderItem={({item}) => (
-            <XStack py="$2" px="$4" bg="$bg.1" br={99} mb="$2" borderColor="$grey.2" borderWidth={1} ai="center" gap="$2">
-              <Text textTransform='capitalize' color="$grey.2">{item.name}</Text>
-              {item.icon && <Icon name={item.icon} size={16} padding={0} />}
-            </XStack>
+            <Pressable style={{flex: 1}} onPress={() => router.push({pathname: '/explore/preview', params: {id: item.id}})}>
+              <PersonBox {...item} />
+            </Pressable>
           )}
-          horizontal={true}
-          ItemSeparatorComponent={() => <View w={8} />}
-          showsHorizontalScrollIndicator={false}
-          ListFooterComponent={() => <View w="$4" />}
+          showsVerticalScrollIndicator={false}
+          ListFooterComponent={() => <View h={PADDING_X} />}
+          numColumns={2}
+          ItemSeparatorComponent={() => <View h={8} />}
+          columnWrapperStyle={{gap: 8}}
         />
-      </View>
-      <FlatList
-        data={persons}
-        renderItem={({item}) => (
-          <Pressable style={{flex: 1}} onPress={() => router.push({pathname: '/explore/preview', params: {id: item.id}})}>
-            <PersonBox {...item} />
-          </Pressable>
-        )}
-        showsVerticalScrollIndicator={false}
-        ListFooterComponent={() => <View h={PADDING_X} />}
-        numColumns={2}
-        ItemSeparatorComponent={() => <View h={8} />}
-        columnWrapperStyle={{gap: 8}}
-      />
-    </Container>
+      </Container>
+    </>
   )
 }
 
