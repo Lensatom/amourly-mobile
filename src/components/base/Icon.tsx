@@ -2,10 +2,10 @@ import { SvgProps } from "react-native-svg"
 import { View } from "tamagui"
 import * as icons from "../../../assets/icons"
 
-export type IconName = keyof typeof icons
+export type IconType = keyof typeof icons
 
 interface Props extends SvgProps {
-  name: IconName
+  name: IconType
   size?: number
   width?: number
   height?: number

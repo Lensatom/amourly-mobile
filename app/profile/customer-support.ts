@@ -1,0 +1,1 @@
+export { CustomerSupport as default } from "@/screens/profile"

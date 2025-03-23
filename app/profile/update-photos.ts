@@ -1,0 +1,1 @@
+export { UpdatePhotos as default } from "@/screens/profile"

@@ -16,8 +16,8 @@ const BaseInput = styled(TMInput, {
     type: {
       outline: {
         backgroundColor: "$backgroundTransparent",
-        borderColor: "$input",
-        outlineColor: "$input",
+        borderColor: "$input.border",
+        outlineColor: "$input.border",
         borderWidth: 1,
         focusStyle: {
           borderColor: "black"
@@ -73,7 +73,7 @@ const Input = forwardRef<any, Props>(({label, phone, hash:h, onChangeText, ...pr
   }
 
   return (
-    <YStack onTouchStart={(e) => e.stopPropagation()} flex={1} gap="$2" position="relative">
+    <YStack w="$full" onTouchStart={(e) => e.stopPropagation()} flex={1} gap="$2" position="relative">
       {label && <Text>{label}</Text>}
 
       {phone && (

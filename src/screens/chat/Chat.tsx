@@ -1,4 +1,4 @@
-import { Carousel, Container, PersonBox } from '@/components/inc'
+import { Carousel, Container, PersonBox, TabHeader } from '@/components/inc'
 import { PADDING_X } from '@/constants'
 import { router } from 'expo-router'
 import React from 'react'
@@ -92,13 +92,11 @@ export const persons = [
 function Chat() {
   return (
     <>
-    <YStack px={PADDING_X} bg="$bg.1" gap="$2" pb="$3">
-      <XStack>
-        <Text fos="$8" fow="600">Chats</Text>
-      </XStack>
+    <YStack px={PADDING_X} bg="$bg.1" pb="$2">
+      <TabHeader title="Chats" />
       <Carousel />
     </YStack>
-    <Container withBoost>
+    <Container withBoost pt="$2">
       <FlatList
         data={persons}
         renderItem={({item}) => (
@@ -108,7 +106,7 @@ function Chat() {
         )}
         showsVerticalScrollIndicator={false}
         ListFooterComponent={() => <View h={PADDING_X} />}
-        ItemSeparatorComponent={() => <View h={10} />}
+        ItemSeparatorComponent={() => <View h={20} />}
       />
     </Container>
     </>

@@ -1,7 +1,8 @@
-import { IconName } from "@/components/base/Icon";
+import { IconType } from "@/components/base/Icon";
 
 export interface FilterType {
+  id?: number | string;
   name: string;
   param: string;
-  icon?: IconName
+  icon?: IconType
 }

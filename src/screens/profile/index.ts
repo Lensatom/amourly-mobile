@@ -1,1 +1,5 @@
+export { default as AccountSettings } from "./AccountSettings"
+export { default as CustomerSupport } from "./CustomerSupport"
 export { default as Profile } from "./Profile"
+export { default as ProfileDetails } from "./ProfileDetails"
+export { default as UpdatePhotos } from "./UpdatePhotos"

@@ -1,18 +1,19 @@
 import UserProvider from '@/providers/UserProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
-import { Slot, SplashScreen, Stack } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
 import { TamaguiProvider } from 'tamagui';
 import config from '../../tamagui.config';
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient();   
 
 function RootLayout() {
   const [loaded] = useFonts({
     Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
     InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
+    Inknut: require('../../assets/fonts/Inknut_Antiqua/InknutAntiqua-Medium.ttf')
   });
 
   useEffect(() => {

@@ -26,7 +26,9 @@ const animations = createAnimations({
   },
 });
 
-const headingFont = createInterFont();
+const headingFont = createInterFont({
+  family: 'Inknut'
+});
 
 const bodyFont = createInterFont();
 

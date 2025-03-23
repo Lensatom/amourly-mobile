@@ -4,6 +4,7 @@ import { Birthday, Hobbies, Intentions, Location, Preferences, UploadPhotos } fr
 import { Button } from '@/components/base'
 import { View, XStack } from 'tamagui'
 import { PADDING_X } from '@/constants'
+import { router } from 'expo-router'
 
 function ProfileSetup() {
   const [step, setStep] = useState(1)
@@ -19,7 +20,7 @@ function ProfileSetup() {
 
   const handleNext = () => {
     if (step === components.length) {
-      // next page
+      router.push("/explore")
     } else {
       setStep(prev => prev + 1)
     }

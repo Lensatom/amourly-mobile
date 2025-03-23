@@ -11,7 +11,7 @@ const Heading = ({
   return (
     <XStack ai="center" h="$5">
       <View h={1} w="$full" bg="#E4E7EF" />
-      <Text bg="$bg.1" pr="$3" pos="absolute" fos="$6" fow="500">{text}</Text>
+      <Text bg="$bg.1" pr="$3" pos="absolute" fos="$6" fow="500" ff="$heading">{text}</Text>
     </XStack>
   )
 }

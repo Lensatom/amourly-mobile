@@ -1,10 +1,10 @@
 import { Icon } from '@/components/base'
-import { Carousel, Container, PersonBox } from '@/components/inc'
+import { Carousel, Container, PersonBox, TabHeader } from '@/components/inc'
 import { PADDING_X, SCREEN_WIDTH } from '@/constants'
 import { router } from 'expo-router'
-import React from 'react'
+import React, { useState } from 'react'
 import { FlatList, Pressable } from 'react-native'
-import { Text, View, XStack } from 'tamagui'
+import { Text, View, XStack, YStack } from 'tamagui'
 import { FilterType } from './types'
 
 export const persons = [
@@ -93,42 +93,59 @@ export const persons = [
 function Explore() {
   const filters:FilterType[] = [
     {
+      id: 1,
       name: "all",
       param: ""
     },
     {
+      id: 2,
       name: "nearby",
       icon: "location",
       param: ""
     },
     {
+      id: 3,
       name: "Hobbies Match",
       icon: "fire",
       param: ""
     },
     {
+      id: 4,
       name: "Most Likes",
       icon: "heart",
       param: ""
     },
     {
+      id: 5,
       name: "Same Intentions",
       icon: "star",
       param: ""
     }
   ]
 
+  const [selectedFilter, setSelectedFilter] = useState<number | string>(1)
+
+  console.log(selectedFilter)
+
   return (
     <>
+      <YStack bg="$bg.1" px={PADDING_X} pb="$3">
+        <View h={45}>
+          <TabHeader title="Explore" />
+        </View>
+        <Text color="$grey.8" fos="$3">Connect wth people who meet your preferences</Text>
+      </YStack>
       <Container withBoost gap="$2">
         <View ml={-PADDING_X} pl={PADDING_X} w={SCREEN_WIDTH}>
           <FlatList
             data={filters}
-            renderItem={({item}) => (
-              <XStack py="$2" px="$4" bg="$bg.1" br={99} mb="$2" borderColor="$grey.2" borderWidth={1} ai="center" gap="$2">
-                <Text textTransform='capitalize' color="$grey.2">{item.name}</Text>
-                {item.icon && <Icon name={item.icon} size={16} padding={0} />}
-              </XStack>
+            renderItem={({item, index}) => (
+              <Pressable onPress={() => setSelectedFilter(item.id)}>
+                <XStack py="$1.5" px="$4" bg={selectedFilter === item.id ? "$primary.2" : "$bg.1"} br={99} mb="$2" borderColor={selectedFilter === item.id ? "$primary.5" : "#B2B3BD"} borderWidth={1} ai="center" gap="$2">
+                  <Text textTransform='capitalize' color="#636363" fos="$3">{item.name}</Text>
+                  {item.icon && <Icon name={item.icon} size={16} padding={0} />}
+                </XStack>
+              </Pressable>
             )}
             horizontal={true}
             ItemSeparatorComponent={() => <View w={8} />}

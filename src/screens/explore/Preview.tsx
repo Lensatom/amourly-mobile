@@ -68,7 +68,7 @@ function Preview() {
           shadowColor: "#B4090940",
           borderRadius: 99,
           backgroundColor: "white"
-        }}>
+        }} onPress={() => router.push("/chat/chat-messenger")}>
           <Icon name="plane_line_blue" size={40} padding={20} />
         </Pressable>
       </XStack>

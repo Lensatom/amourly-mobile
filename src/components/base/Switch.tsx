@@ -14,13 +14,13 @@ function Switch({
     <TMSwitch
       checked={isChecked}
       onCheckedChange={onCheckedChange}
-      bg={`${isChecked ? "$primary" : "$grey.1"}`}
+      bg={`${isChecked ? "$primary.6" : "$grey.5"}`}
       borderWidth={0}
-      size="$2"
+      size="$3"
       px="$1.5"
       py="$1"
     >
-      <TMSwitch.Thumb animation="quick" bg="$white.100" size="$2" />
+      <TMSwitch.Thumb animation="quick" bg="white" />
     </TMSwitch>
   )
 }

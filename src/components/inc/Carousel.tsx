@@ -40,7 +40,7 @@ function Carousel() {
 
   return (
     <>
-      <View>
+      <View w="$full">
         <Pressable onPress={presentSheet}>
           <Image source={PremiumCard} width={"100%"} resizeMode='contain' py={0} my={0} h={100} />
         </Pressable>

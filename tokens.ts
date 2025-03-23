@@ -10,9 +10,14 @@ export const tokens = {
     "primary.1": "#FFF8F6",
     "primary.2": "#FFEAE6",
     "primary.5": "#FEA394",
+    "primary.6": "#F78776",
+    "primary.7": "#E50C00",
+    "primary.9": "#632018",
 
     // teal
     "teal.3": "#067971",
+    "teal.5": "#03302D",
+    "teal.4": "#044944",
 
     // danger
     danger: '#DF2126',
@@ -36,7 +41,7 @@ export const tokens = {
 
     // input
     "input": "#E4E7EF",
-    "input.border": "#E8EBEA"
+    "input.border": "#6D7280"
   },
   size: {
     ...TMTokens.size,

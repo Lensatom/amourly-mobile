@@ -7,7 +7,7 @@ function Birthday() {
   return (
     <YStack gap="$4">
       <Title text="When is your birthday?" />
-      <DatePicker />
+      {/* <DatePicker /> */}
     </YStack>
   )
 }

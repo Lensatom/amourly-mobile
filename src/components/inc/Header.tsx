@@ -8,7 +8,6 @@ import { Icon } from '../base';
 interface Props {
   title?: string
 }
-
 export function Header({
   title
 }:Props) {
@@ -17,7 +16,7 @@ export function Header({
       <View pos="absolute" left={PADDING_X}>
         <BackButton />
       </View>
-      <Text color="$primary" fos="$6" fow="800">{title}</Text>
+      <Text color="$primary" fos="$6" fow="800" ff="$heading">{title}</Text>
     </XStack>
   );
 }
