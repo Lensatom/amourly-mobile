@@ -3,7 +3,7 @@ import React from 'react'
 
 function Main() {
   return (
-    <Redirect href="/login" />
+    <Redirect href="/welcome" />
   )
 }
 

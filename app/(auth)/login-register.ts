@@ -1,0 +1,1 @@
+export { LoginRegister as default } from "@/screens/auth"

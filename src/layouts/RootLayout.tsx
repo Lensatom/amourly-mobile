@@ -30,10 +30,10 @@ function RootLayout() {
     >
       <UserProvider>
         <TamaguiProvider config={config} defaultTheme='light'>
-          <StatusBar />
-          <SafeAreaView style={{ flex: 1 }}>
+          {/* <StatusBar /> */}
+          {/* <SafeAreaView style={{ flex: 1 }}> */}
             <Stack screenOptions={{headerShown: false}} />
-          </SafeAreaView>
+          {/* </SafeAreaView> */}
         </TamaguiProvider>
       </UserProvider>
     </QueryClientProvider>

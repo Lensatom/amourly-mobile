@@ -39,7 +39,7 @@ api.interceptors.response.use(
 );
 
 function redirectToLogin() {
-  router.replace('/login');
+  router.replace('/login-register');
 }
 
 export function tokenInterceptor() {
