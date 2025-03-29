@@ -1,3 +1,4 @@
+import { userRouter } from '@/api/user/mutations'
 import { Button } from '@/components/base'
 import { Container } from '@/components/inc'
 import { router, useLocalSearchParams } from 'expo-router'
@@ -8,19 +9,23 @@ import { Text, XStack, YStack } from 'tamagui'
 import { tokens } from 'tokens'
 
 function VerifyAccount() {
-  const { type } = useLocalSearchParams()
+  const { email }: { email:string } = useLocalSearchParams()
 
   const [timer, setTimer] = useState(60)
+  const [otp, setOtp] = useState("")
+
+  const { mutateAsync, isPending } = userRouter.verifyOTP.useMutation()
 
   useEffect(() => {
+    const updateCountdown = () => {
+      if (timer < 1) return
+      setTimer(prev => prev - 1)
+    }
+
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
   }, [])
 
-  const updateCountdown = () => {
-    if (timer < 1) return
-    setTimer(prev => prev - 1)
-  }
 
   const handleResentOTP = () => {
     ToastAndroid.showWithGravityAndOffset(
@@ -34,11 +39,14 @@ function VerifyAccount() {
   }
 
   const handleSubmit = () => {
-    if (type === "forgot-password") {
-      router.push("/reset-password")
-    } else {
-      router.push("/profile-setup")
+    const data = {
+      email,
+      otp
     }
+    mutateAsync({data}).then((res) => {
+      console.log("Hello")
+    })
+    // router.push("/profile-setup")
   }
 
   return (
@@ -47,14 +55,14 @@ function VerifyAccount() {
         <YStack ai="center">
           <Text fos="$8" fow="600">Verify your account</Text>
           <Text>
-            Enter the OTP sent to 
-            <Text fow="500">desiredestiny@gmail.com</Text>
+            Enter the OTP sent to{" "}
+            <Text fow="500">{email}</Text>
           </Text>
         </YStack>
         <YStack w="$full" gap="$2">
           <OtpInput
             numberOfDigits={6}
-            onTextChange={(text) => console.log(text)}
+            onTextChange={(text) => setOtp(text)}
             focusColor={tokens.color.primary}
             theme={{
               containerStyle: {
@@ -68,7 +76,7 @@ function VerifyAccount() {
           />
         </YStack>
         <YStack ai="center" w="$full" gap="$4" bg="$bg.1">
-          <Button text="Continue" w="$full" pill onPress={handleSubmit} />
+          <Button text="Continue" w="$full" pill onPress={handleSubmit} isLoading={isPending} />
           <XStack gap="$2" ai="center">
             <Text fos="$5" fow="300">Didn't receive any OTP?</Text>
             {timer > 0 ? (

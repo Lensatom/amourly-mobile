@@ -1,13 +1,13 @@
-import { queryClient } from "@/layouts/RootLayout";
 import { router } from "react-query-kit";
-import { getOTP } from ".";
+import { getOTP, verifyOTP } from ".";
 
 export const userRouter = router("user", {
   getOTP: router.mutation({
     mutationFn: getOTP,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user'] });
-    },
+  }),
+
+  verifyOTP: router.mutation({
+    mutationFn: verifyOTP
   }),
 
   // update: router.mutation({

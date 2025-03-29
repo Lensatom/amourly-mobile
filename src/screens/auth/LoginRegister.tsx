@@ -15,7 +15,7 @@ function LoginRegister() {
 
   const handleSubmit = () => {
     mutateAsync({data: {email}}).then(() => {
-      router.push("/verify-account")
+      router.push({pathname: "/verify-account", params: {email}})
     })
   }
 
