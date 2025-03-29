@@ -16,7 +16,6 @@ interface VerifyOTP {
 }
 export async function verifyOTP({data}:VerifyOTP) {
   const response = await api.post<any>("/users/verify-otp", data);
-  console.log("From API fn", response)
   return response.data;
 }
 

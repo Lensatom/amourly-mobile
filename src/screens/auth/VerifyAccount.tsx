@@ -1,6 +1,7 @@
 import { userRouter } from '@/api/user/mutations'
 import { Button } from '@/components/base'
 import { Container } from '@/components/inc'
+import { setAccessToken } from '@/helpers'
 import { router, useLocalSearchParams } from 'expo-router'
 import React, { useEffect, useState } from 'react'
 import { Pressable, ToastAndroid } from 'react-native'
@@ -44,7 +45,8 @@ function VerifyAccount() {
       otp
     }
     mutateAsync({data}).then((res) => {
-      console.log("Hello")
+      setAccessToken(res.token)
+      console.log(res)
     })
     // router.push("/profile-setup")
   }
