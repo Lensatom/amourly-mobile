@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
 import { TamaguiProvider } from 'tamagui';
 import config from '../../tamagui.config';
 

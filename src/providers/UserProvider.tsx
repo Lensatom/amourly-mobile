@@ -3,7 +3,7 @@ import { UserContext } from '@/contexts'
 import React, { useEffect, useState } from 'react'
 
 function UserProvider({children}:{children: React.ReactNode}) {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<any>(null)
 
   // const { fetchUser } = useQueryUser()
   // const { data, isLoading, refetch } = fetchUser

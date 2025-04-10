@@ -42,11 +42,17 @@ export const getTime = (timestamp:any) => {
   return time
 }
 
-export const formatDate = (timestamp:any) => {
-  const dateObj = new Date(timestamp);
-  const normalDate = dateObj.toLocaleDateString();
-  return normalDate
-}
+export const formatDate = (date: any) => {
+  const validDate = date instanceof Date ? date : new Date(date);
+  if (isNaN(validDate.getTime())) {
+    console.error("Invalid date:", date);
+    return "Invalid Date";
+  }
+  const day = String(validDate.getDate()).padStart(2, '0');
+  const month = String(validDate.getMonth() + 1).padStart(2, '0');
+  const year = validDate.getFullYear();
+  return `${day} / ${month} / ${year}`;
+};
 
 export const checkInventoryManager = (user:any) => {
   return user.role === "inventory_manager_fuel_station"

@@ -1,15 +1,17 @@
 import { userRouter } from '@/api/user/mutations'
 import { Button } from '@/components/base'
 import { Container } from '@/components/inc'
+import { UserContext } from '@/contexts'
 import { setAccessToken } from '@/helpers'
 import { router, useLocalSearchParams } from 'expo-router'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Pressable, ToastAndroid } from 'react-native'
 import { OtpInput } from "react-native-otp-entry"
 import { Text, XStack, YStack } from 'tamagui'
 import { tokens } from 'tokens'
 
 function VerifyAccount() {
+  const { setUser } = useContext(UserContext)
   const { email }: { email:string } = useLocalSearchParams()
 
   const [timer, setTimer] = useState(60)
@@ -46,9 +48,14 @@ function VerifyAccount() {
     }
     mutateAsync({data}).then((res) => {
       setAccessToken(res.token)
-      console.log(res)
+      const data = res.userData
+      setUser(data)
+      if (data.intentions) {
+        router.push("/explore")
+      } else {
+        router.push("/profile-setup")
+      }
     })
-    // router.push("/profile-setup")
   }
 
   return (

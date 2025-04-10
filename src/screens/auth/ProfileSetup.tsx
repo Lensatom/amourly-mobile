@@ -29,10 +29,11 @@ function ProfileSetup() {
   return (
     <>
       <Container gap="$6">
-        <XStack gap="$2">
-          {Array.from(Array(components.length).keys()).map((item) => <View key={item} flex={1} bg={step > item ? "$primary" : "$grey.5"} h={8} br={99} />)}
+        <XStack gap="$2" mt="$4">
+          {Array.from(Array(components.length).keys()).map((item) => (
+            <View key={item} flex={1} bg={step > item ? "$primary" : "$grey.5"} h={8} br={99} />
+          ))}
         </XStack>
-        <></>
         {components[step - 1]}
       </Container>
       <View px={PADDING_X} py="$6" bg="$bg.1">
