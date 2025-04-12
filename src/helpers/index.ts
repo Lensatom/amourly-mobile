@@ -1,10 +1,10 @@
 import { ACCESS_TOKEN_KEY } from "@/constants";
 import * as SecureStore from "expo-secure-store";
+import { ToastAndroid } from "react-native";
 
 export async function getAccessToken() {
   try {
     const result = await SecureStore.getItemAsync(ACCESS_TOKEN_KEY);
-
     return result;
   } catch (e) {
     console.log("Failed to get token:", e);
@@ -28,20 +28,6 @@ export async function clearAccessToken(otp?: boolean) {
   }
 }
 
-
-export const getTime = (timestamp:any) => {
-  const time = new Date(timestamp).toLocaleTimeString(
-    [],
-    {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true
-    }
-  )
-
-  return time
-}
-
 export const formatDate = (date: any) => {
   const validDate = date instanceof Date ? date : new Date(date);
   if (isNaN(validDate.getTime())) {
@@ -54,6 +40,12 @@ export const formatDate = (date: any) => {
   return `${day} / ${month} / ${year}`;
 };
 
-export const checkInventoryManager = (user:any) => {
-  return user.role === "inventory_manager_fuel_station"
+export const showToast = (message: string) => {
+  ToastAndroid.showWithGravityAndOffset(
+    message,
+    ToastAndroid.LONG,
+    ToastAndroid.BOTTOM,
+    25,
+    50,
+  )
 }

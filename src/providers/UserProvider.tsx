@@ -1,19 +1,19 @@
-// import { useQueryUser } from '@/api/user/queries'
+import { useQueryUser } from '@/api/queries'
+import { Loader } from '@/components/inc'
 import { UserContext } from '@/contexts'
 import React, { useEffect, useState } from 'react'
 
 function UserProvider({children}:{children: React.ReactNode}) {
   const [user, setUser] = useState<any>(null)
 
-  // const { fetchUser } = useQueryUser()
-  // const { data, isLoading, refetch } = fetchUser
+  const { fetchUser } = useQueryUser()
+  const { data, isLoading } = fetchUser
 
-  console.log(user)
+  useEffect(() => {
+    setUser(data?.user)
+  }, [data])
 
-  // useEffect(() => {
-  //   setUser(data)
-  // }, [data])
-
+  if (isLoading) return <Loader />
   return (
     <UserContext.Provider value={{user, setUser}}>
       {children}

@@ -1,3 +1,4 @@
+import { POST } from "@/api/base";
 import { router } from "react-query-kit";
 import { getOTP, verifyOTP } from ".";
 
@@ -8,12 +9,5 @@ export const userRouter = router("user", {
 
   verifyOTP: router.mutation({
     mutationFn: verifyOTP
-  }),
-
-  // update: router.mutation({
-  //   mutationFn: updateUser,
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries({ queryKey: ['user'] });
-  //   },
-  // }),
+  })
 })

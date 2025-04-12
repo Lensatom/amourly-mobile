@@ -4,7 +4,7 @@ import { getUser } from ".";
 const useQueryUser = () => {
   const fetchUser = useQuery({
     queryKey: ["user"],
-    queryFn: () => getUser(),
+    queryFn: getUser,
     retry: false
   });
 

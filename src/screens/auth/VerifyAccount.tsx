@@ -1,11 +1,11 @@
-import { userRouter } from '@/api/user/mutations'
+import { userRouter } from './api/mutations'
 import { Button } from '@/components/base'
 import { Container } from '@/components/inc'
 import { UserContext } from '@/contexts'
-import { setAccessToken } from '@/helpers'
+import { setAccessToken, showToast } from '@/helpers'
 import { router, useLocalSearchParams } from 'expo-router'
 import React, { useContext, useEffect, useState } from 'react'
-import { Pressable, ToastAndroid } from 'react-native'
+import { Pressable } from 'react-native'
 import { OtpInput } from "react-native-otp-entry"
 import { Text, XStack, YStack } from 'tamagui'
 import { tokens } from 'tokens'
@@ -20,41 +20,23 @@ function VerifyAccount() {
   const { mutateAsync, isPending } = userRouter.verifyOTP.useMutation()
 
   useEffect(() => {
-    const updateCountdown = () => {
-      if (timer < 1) return
-      setTimer(prev => prev - 1)
-    }
-
+    const updateCountdown = () => setTimer(prev => prev < 1 ? 0 : prev - 1)
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
   }, [])
 
-
-  const handleResentOTP = () => {
-    ToastAndroid.showWithGravityAndOffset(
-      "OTP resent successfully",
-      ToastAndroid.LONG,
-      ToastAndroid.BOTTOM,
-      25,
-      50,
-    )
+  const handleResendOTP = () => {
+    showToast("OTP resent successfully")
     setTimer(60)
   }
 
   const handleSubmit = () => {
-    const data = {
-      email,
-      otp
-    }
+    const data = {email, otp}
     mutateAsync({data}).then((res) => {
       setAccessToken(res.token)
       const data = res.userData
       setUser(data)
-      if (data.intentions) {
-        router.push("/explore")
-      } else {
-        router.push("/profile-setup")
-      }
+      router.push("/profile-setup")
     })
   }
 
@@ -97,7 +79,7 @@ function VerifyAccount() {
                 </Text>
               </XStack>
             ) : (
-              <Pressable onPress={handleResentOTP}>
+              <Pressable onPress={handleResendOTP}>
                 <Text fos="$5" color="$primary" textDecorationLine='underline' fow="300">Resend OTP</Text>
               </Pressable>
             )}

@@ -1,7 +1,4 @@
-export { default as Register } from "./Register"
 export { default as LoginRegister } from "./LoginRegister"
-export { default as VerifyAccount } from "./VerifyAccount"
-export { default as ForgotPassword } from "./ForgotPassword"
-export { default as ResetPassword } from "./ResetPassword"
 export { default as ProfileSetup } from "./ProfileSetup"
+export { default as VerifyAccount } from "./VerifyAccount"
 export { default as Welcome } from "./Welcome"

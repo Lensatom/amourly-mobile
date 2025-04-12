@@ -24,17 +24,15 @@ function RootLayout() {
 
   if (!loaded) return null
   return (
-    <QueryClientProvider
-      client={queryClient}
-    >
-      <UserProvider>
-        <TamaguiProvider config={config} defaultTheme='light'>
-          {/* <StatusBar /> */}
-          {/* <SafeAreaView style={{ flex: 1 }}> */}
-            <Stack screenOptions={{headerShown: false}} />
-          {/* </SafeAreaView> */}
-        </TamaguiProvider>
-      </UserProvider>
+    <QueryClientProvider client={queryClient}>
+      <TamaguiProvider config={config} defaultTheme='light'>
+        <UserProvider>
+            {/* <StatusBar /> */}
+            {/* <SafeAreaView style={{ flex: 1 }}> */}
+              <Stack screenOptions={{headerShown: false}} />
+            {/* </SafeAreaView> */}
+        </UserProvider>
+      </TamaguiProvider>
     </QueryClientProvider>
   );
 }

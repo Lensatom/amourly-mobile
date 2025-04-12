@@ -1,4 +1,4 @@
-import { userRouter } from '@/api/user/mutations'
+import { userRouter } from './api/mutations'
 import { Button, Input } from '@/components/base'
 import { Container } from '@/components/inc'
 import { PADDING_X } from '@/constants'
@@ -14,7 +14,7 @@ function LoginRegister() {
   const { mutateAsync, isPending } = userRouter.getOTP.useMutation()
 
   const handleSubmit = () => {
-    mutateAsync({data: {email}}).then(() => {
+    mutateAsync({data:{email}}).then(() => {
       router.push({pathname: "/verify-account", params: {email}})
     })
   }
