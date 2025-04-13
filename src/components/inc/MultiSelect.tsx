@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Pressable } from 'react-native'
 import { Text } from 'tamagui'
 import { XStack } from 'tamagui'
@@ -6,10 +6,12 @@ import { Icon } from '../base'
 
 interface Props {
   opts: string[]
+  onChange?: (choices:string[]) => void
 }
 
 function MultiSelect({
   opts,
+  onChange
 }:Props) {
   const [choices, setChoices] = useState<string[]>([])
 
@@ -24,7 +26,10 @@ function MultiSelect({
     }
   }
 
-  console.log(choices)
+  useEffect(() => {
+    if (!onChange) return
+    onChange(choices)
+  }, [choices])
 
   return (
     <XStack flex={1} flexWrap='wrap' gap="$2">

@@ -1,7 +1,7 @@
 import { TrueSheet } from "@lodev09/react-native-true-sheet"
 import { useRef } from "react"
 
-const useBottomSheet = () => {
+export const useBottomSheet = () => {
 
   const sheetRef = useRef<TrueSheet>(null)
 
@@ -18,5 +18,3 @@ const useBottomSheet = () => {
     dismiss
   }
 }
-
-export default useBottomSheet

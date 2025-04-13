@@ -1,7 +1,5 @@
 import { api, tokenInterceptor } from "./config";
 
-const eject = tokenInterceptor();
-
 // ===== POST =====
 export interface IPOST {
   route: string;
@@ -15,6 +13,7 @@ export const POST = async ({
   authorization=true,
   isFormData=false
 }:IPOST) => {
+  const eject = tokenInterceptor();
   const response = await api.post(
     route,
     data,
@@ -35,6 +34,7 @@ export const GET = async ({
   route,
   authorization=true
 }:IGET) => {
+  const eject = tokenInterceptor();
   const response = await api.get(
     route,
     {headers: {
@@ -58,6 +58,7 @@ export const PUT = async ({
   authorization=true,
   isFormData=false
 }:IPUT) => {
+  const eject = tokenInterceptor();
   const response = await api.put(
     route,
     data,
@@ -80,6 +81,7 @@ export const DELETE = async ({
   route,
   authorization=true
 }:IDELETE) => {
+  const eject = tokenInterceptor();
   const response = await api.delete(
     route
   );

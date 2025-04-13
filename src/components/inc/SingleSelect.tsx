@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Pressable } from 'react-native'
-import { Text, View } from 'tamagui'
-import { XStack } from 'tamagui'
-import { Icon } from '../base'
+import { Text, View, XStack } from 'tamagui'
 
 interface Props {
   opts: string[]
+  onChange?: (choice:string) => void
 }
 
-function MultiSelect({
+function SingleSelect({
   opts,
+  onChange
 }:Props) {
-  const [choice, setChoice] = useState<string>()
+  const [choice, setChoice] = useState<string>("")
 
   const handleSelect = (opt:string) => {
     setChoice(opt)
   }
+
+  useEffect(() => {
+    if (!onChange) return
+    onChange(choice)
+  }, [choice])
 
   return (
     <XStack flex={1} flexWrap='wrap' gap="$2">
@@ -36,4 +41,4 @@ function MultiSelect({
   )
 }
 
-export default MultiSelect
+export default SingleSelect

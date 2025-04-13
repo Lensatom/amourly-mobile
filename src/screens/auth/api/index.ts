@@ -1,4 +1,4 @@
-import { POST } from "@/api/base";
+import { POST, PUT } from "@/api/base";
 import { IGetOTP, ISetupProfile, IVerifyOTP } from "./types";
 
 export async function getOTP({data}:IGetOTP) {
@@ -18,8 +18,8 @@ export async function verifyOTP({data}:IVerifyOTP) {
 }
 
 export async function setupProfile({data}:ISetupProfile) {
-  const res = POST({
-    route: "/users/verify-otp",
+  const res = PUT({
+    route: "/users/users/onboarding",
     data
   });
   return res;

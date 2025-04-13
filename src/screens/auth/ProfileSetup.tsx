@@ -6,9 +6,13 @@ import { View, XStack } from 'tamagui'
 import { PADDING_X } from '@/constants'
 import { router } from 'expo-router'
 import { UserContext } from '@/contexts'
+import { useForm } from '../../hooks'
+import { authRouter } from './api/mutations'
 
 function ProfileSetup() {
   const { user } = useContext(UserContext)
+  const { data, changeData, setData } = useForm({})
+  const { mutateAsync, isPending } = authRouter.setupProfile.useMutation()
 
   const getStep = () => {
     if (user?.birthday) return 2
@@ -18,26 +22,31 @@ function ProfileSetup() {
     if (user?.photos?.length > 0) return 6
     return 1
   }
-  const [step, setStep] = useState(getStep())
+  const [step, setStep] = useState<number>(getStep())
 
   const components = useMemo(() => [
-    { key: 'birthday', component: <Birthday /> },
-    { key: 'preferences', component: <Preferences /> },
+    { key: 'birthday', component: <Birthday data={data} changeData={changeData} /> },
+    { key: 'preferences', component: <Preferences data={data} changeData={changeData} /> },
     { key: 'intentions', component: <Intentions /> },
     { key: 'location', component: <Location /> },
     { key: 'uploadPhotos', component: <UploadPhotos /> },
     { key: 'hobbies', component: <Hobbies /> }
-  ], [])
+  ], [data])
 
 
-  const handleNext = () => {
-    setStep(prev => {
-      if (prev === components.length) {
-        router.push("/explore")
-        return prev
-      }
-      return prev + 1
-    })
+  const handleNext = async () => {
+    try {
+      await mutateAsync({data})
+      setStep(prev => {
+        if (prev === components.length) {
+          router.push("/explore")
+          return prev
+        }
+        return prev + 1
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
   
   return (
@@ -51,7 +60,7 @@ function ProfileSetup() {
         {components[step - 1].component}
       </Container>
       <View px={PADDING_X} py="$6" bg="$bg.1">
-        <Button text="Next" w="$full" pill onPress={handleNext} />
+        <Button text="Next" w="$full" pill onPress={handleNext} isLoading={isPending} />
       </View>
     </>
   )

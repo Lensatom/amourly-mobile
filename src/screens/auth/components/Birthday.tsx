@@ -5,20 +5,16 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import React, { useState } from 'react';
 import { Pressable } from 'react-native';
 import { Text, XStack, YStack } from 'tamagui';
-import { authRouter } from '../api/mutations';
 
-function Birthday() {
+function Birthday({data, changeData}:any) {
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
-  const [birthday, setBirthday] = useState(null)
-
-  const {  } = authRouter.setupProfile.useMutation()
 
   const today = new Date();
   const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
 
   const handleSelectDate = (date:any) => {
     setDatePickerOpen(false)
-    setBirthday(date.nativeEvent.timestamp);
+    changeData("birthday", date.nativeEvent.timestamp)
   }
 
   return (
@@ -27,7 +23,7 @@ function Birthday() {
       <Pressable onPress={() => setDatePickerOpen(true)}>
         <XStack gap="$2" alignItems="center" borderWidth={1} borderColor="$grey.7" py="$2.5" px="$4" borderRadius="$4">
           <Icon name="cake" padding={0} size={20} />
-          <Text opacity={0.6} fos="$3">{birthday ? formatDate(birthday) : "DD / MM / YYYY"}</Text>
+          <Text opacity={0.6} fos="$3">{data.birthday ? formatDate(data.birthday) : "DD / MM / YYYY"}</Text>
         </XStack>
       </Pressable>
       {datePickerOpen && (

@@ -1,17 +1,17 @@
-import { userRouter } from './api/mutations'
 import { Button, Input } from '@/components/base'
 import { Container } from '@/components/inc'
 import { PADDING_X } from '@/constants'
 import { router } from 'expo-router'
 import { useState } from 'react'
 import { Text, YStack } from 'tamagui'
+import { authRouter } from './api/mutations'
 
 function LoginRegister() {
   const [email, setEmail] = useState("")
   const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
   const isValid = emailRegex.test(email)
 
-  const { mutateAsync, isPending } = userRouter.getOTP.useMutation()
+  const { mutateAsync, isPending } = authRouter.getOTP.useMutation()
 
   const handleSubmit = () => {
     mutateAsync({data:{email}}).then(() => {

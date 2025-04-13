@@ -12,8 +12,5 @@ export interface IVerifyOTP {
 }
 
 export interface ISetupProfile {
-  data: {
-    email: string;
-    otp: string
-  }
+  data: any
 }
