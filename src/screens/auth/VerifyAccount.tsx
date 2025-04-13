@@ -1,4 +1,3 @@
-import { userRouter } from './api/mutations'
 import { Button } from '@/components/base'
 import { Container } from '@/components/inc'
 import { UserContext } from '@/contexts'
@@ -9,6 +8,7 @@ import { Pressable } from 'react-native'
 import { OtpInput } from "react-native-otp-entry"
 import { Text, XStack, YStack } from 'tamagui'
 import { tokens } from 'tokens'
+import { authRouter } from './api/mutations'
 
 function VerifyAccount() {
   const { setUser } = useContext(UserContext)
@@ -17,7 +17,7 @@ function VerifyAccount() {
   const [timer, setTimer] = useState(60)
   const [otp, setOtp] = useState("")
 
-  const { mutateAsync, isPending } = userRouter.verifyOTP.useMutation()
+  const { mutateAsync, isPending } = authRouter.verifyOTP.useMutation()
 
   useEffect(() => {
     const updateCountdown = () => setTimer(prev => prev < 1 ? 0 : prev - 1)

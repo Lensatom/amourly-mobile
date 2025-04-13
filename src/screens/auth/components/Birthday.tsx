@@ -1,15 +1,17 @@
-import { Title } from '@/components/inc'
-import React, { useState } from 'react'
-import { Text, YStack } from 'tamagui'
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { Button, Icon } from '@/components/base';
-import { XStack } from 'tamagui';
-import { Pressable } from 'react-native';
+import { Icon } from '@/components/base';
+import { Title } from '@/components/inc';
 import { formatDate } from '@/helpers';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import React, { useState } from 'react';
+import { Pressable } from 'react-native';
+import { Text, XStack, YStack } from 'tamagui';
+import { authRouter } from '../api/mutations';
 
 function Birthday() {
   const [datePickerOpen, setDatePickerOpen] = useState<boolean>(false);
   const [birthday, setBirthday] = useState(null)
+
+  const {  } = authRouter.setupProfile.useMutation()
 
   const today = new Date();
   const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());

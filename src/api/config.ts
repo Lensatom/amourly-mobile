@@ -3,7 +3,7 @@ import { getAccessToken } from "@/helpers";
 import { router } from "expo-router";
 import { ToastAndroid } from "react-native";
 
-const BASE_URL = "http://thrivegrantsolutions.com:5000";
+const BASE_URL = "http://178.16.130.114:5000";
 
 export const api = axios.create({
   baseURL: BASE_URL,

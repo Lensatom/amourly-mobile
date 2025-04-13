@@ -1,10 +1,6 @@
 import { POST } from "@/api/base";
+import { IGetOTP, ISetupProfile, IVerifyOTP } from "./types";
 
-interface IGetOTP {
-  data: {
-    email: string
-  }
-}
 export async function getOTP({data}:IGetOTP) {
   const res = POST({
     route: "/users/signup",
@@ -13,13 +9,15 @@ export async function getOTP({data}:IGetOTP) {
   return res;
 }
 
-interface IVerifyOTP {
-  data: {
-    email: string;
-    otp: string
-  }
-}
 export async function verifyOTP({data}:IVerifyOTP) {
+  const res = POST({
+    route: "/users/verify-otp",
+    data
+  });
+  return res;
+}
+
+export async function setupProfile({data}:ISetupProfile) {
   const res = POST({
     route: "/users/verify-otp",
     data
