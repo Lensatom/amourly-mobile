@@ -17,6 +17,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
     "@lodev09/react-native-true-sheet": "^2.0.5",
+    "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/datetimepicker": "^8.3.0",
     "@react-navigation/native": "^7.0.3",
     "@tamagui/animations-react-native": "^1.125.8",
