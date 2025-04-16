@@ -9,6 +9,7 @@ export const tokens = {
     "primary.0.5": "#FFFCFB",
     "primary.1": "#FFF8F6",
     "primary.2": "#FFEAE6",
+    "primary.3": "#FFDAD1",
     "primary.5": "#FEA394",
     "primary.6": "#F78776",
     "primary.7": "#E50C00",

@@ -15,19 +15,25 @@ function ProfileSetup() {
   const { mutateAsync, isPending } = authRouter.setupProfile.useMutation()
 
   const getStep = () => {
-    if (user?.birthday) return 2
-    if (user?.preferences) return 3
-    if (user?.intentions) return 4
-    if (user?.location) return 5
-    if (user?.photos?.length > 0) return 6
-    return 1
+    if (!user?.birthday) return 1
+    if (!(
+      user?.age_min
+      && user?.age_max
+      && user?.gender
+      && user?.gender_pref
+    )) return 2
+    if (!user?.intentions) return 3
+    if (!user?.location) return 4
+    if (user?.photos?.length === 0) return 5
+    if (!user?.hobbies) return 6
+    return -1
   }
   const [step, setStep] = useState<number>(getStep())
 
   const components = useMemo(() => [
     { key: 'birthday', component: <Birthday data={data} changeData={changeData} /> },
     { key: 'preferences', component: <Preferences data={data} changeData={changeData} /> },
-    { key: 'intentions', component: <Intentions /> },
+    { key: 'intentions', component: <Intentions data={data} changeData={changeData} /> },
     { key: 'location', component: <Location /> },
     { key: 'uploadPhotos', component: <UploadPhotos /> },
     { key: 'hobbies', component: <Hobbies /> }

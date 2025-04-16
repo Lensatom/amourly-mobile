@@ -1,5 +1,5 @@
 import { MultiSelect, SingleSelect, Title } from '@/components/inc'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Text, View } from 'tamagui'
 import { YStack } from 'tamagui'
 import MultiSlider from '@ptomasroos/react-native-multi-slider'
@@ -7,6 +7,16 @@ import { PADDING_X, SCREEN_WIDTH } from '@/constants'
 import { Platform } from 'react-native'
 
 function Preferences({data, changeData}:any) {
+
+  const handleChangeAge = (values:number[]) => {
+    changeData("age_min", values[0])
+    changeData("age_max", values[1])
+  }
+
+  useEffect(() => {
+    handleChangeAge([18, 85])
+  }, [])
+
   return (
     <YStack gap="$6">
       <Title text="Preferences" />
@@ -26,7 +36,7 @@ function Preferences({data, changeData}:any) {
           selectedStyle={{backgroundColor:'#CD5808', borderRadius: 99}}
           unselectedStyle={{backgroundColor:"#E2E8F0", borderRadius: 99}}
           containerStyle={{alignSelf:'center'}}
-          // onValuesChange={handleDistanceChange}
+          onValuesChange={handleChangeAge}
           markerStyle={{
             ...Platform.select({
               android: {
